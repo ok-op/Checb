@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Reel Downloader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #5cb85c;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        #download-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #download-link a {
+            text-decoration: none;
+            color: #5cb85c;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        #download-link a:hover {
+            color: #4cae4c;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer a {
+            text-decoration: none;
+            color: #5cb85c;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Instagram Reel Downloader</h1>
+    </header>
+    <main>
+        <form id="download-form">
+            <input type="text" id="reel-url" placeholder="Enter Instagram Reel URL" required>
+            <input type="submit" value="Download">
+        </form>
+        <div id="download-link"></div>
+    </main>
+    <footer>
+        <p>Developed by 😏 WOODcraft</p>
+        <a href="https://t.me/Opleech_WD" target="_blank">Join Our Channel</a>
+    </footer>
+    <script>
+        document.getElementById('download-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const reelUrl = document.getElementById('reel-url').value;
+            fetch(`https://slimshadow-instagram-r-api.hf.space/download/?reel_url=${encodeURIComponent(reelUrl)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.download_link) {
+                        document.getElementById('download-link').innerHTML = `<a href="${data.download_link}" target="_blank">Download Video</a>`;
+                    } else {
+                        document.getElementById('download-link').innerText = 'Error downloading video.';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('download-link').innerText = 'An error occurred: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
