@@ -11,10 +11,9 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            overflow: hidden;
         }
+
         header {
             text-align: center;
             padding: 20px;
@@ -22,10 +21,12 @@
             color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             margin: 0;
             font-size: 24px;
         }
+
         main {
             flex: 1;
             display: flex;
@@ -33,13 +34,17 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
         }
+
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 15px;
+            z-index: 2;
         }
+
         input[type="text"] {
             width: 300px;
             padding: 10px;
@@ -47,6 +52,7 @@
             border-radius: 5px;
             font-size: 16px;
         }
+
         input[type="submit"] {
             padding: 10px 20px;
             background-color: #5cb85c;
@@ -57,22 +63,32 @@
             font-size: 16px;
             transition: background-color 0.3s ease;
         }
+
         input[type="submit"]:hover {
             background-color: #4cae4c;
         }
+
         #download-link {
             margin-top: 20px;
             text-align: center;
         }
-        #download-link a {
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
             text-decoration: none;
-            color: #5cb85c;
-            font-weight: 600;
+            border-radius: 5px;
             font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease;
         }
-        #download-link a:hover {
-            color: #4cae4c;
+
+        .button:hover {
+            background-color: #0056b3;
         }
+
         footer {
             background-color: #333;
             color: white;
@@ -80,14 +96,49 @@
             padding: 10px 20px;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
+
         footer a {
             text-decoration: none;
             color: #5cb85c;
             font-weight: 600;
             transition: color 0.3s ease;
         }
+
         footer a:hover {
             color: #4cae4c;
+        }
+
+        /* Emoji animation */
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            animation: floatUp 5s infinite ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        .emoji:nth-child(1) {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .emoji:nth-child(2) {
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        .emoji:nth-child(3) {
+            left: 80%;
+            animation-delay: 2s;
         }
     </style>
 </head>
@@ -96,6 +147,12 @@
         <h1>Instagram Reel Downloader</h1>
     </header>
     <main>
+        <!-- Floating Emojis -->
+        <div class="emoji">🎉</div>
+        <div class="emoji">✨</div>
+        <div class="emoji">🎈</div>
+
+        <!-- Form Section -->
         <form id="download-form">
             <input type="text" id="reel-url" placeholder="Enter Instagram Reel URL" required>
             <input type="submit" value="Download">
@@ -114,7 +171,8 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.download_link) {
-                        document.getElementById('download-link').innerHTML = `<a href="${data.download_link}" target="_blank">Download Video</a>`;
+                        document.getElementById('download-link').innerHTML = 
+                            `<a href="${data.download_link}" target="_blank" class="button">Download Video</a>`;
                     } else {
                         document.getElementById('download-link').innerText = 'Error downloading video.';
                     }
