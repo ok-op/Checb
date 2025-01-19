@@ -11,7 +11,9 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
@@ -20,11 +22,6 @@
             background-color: #5cb85c;
             color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
         }
 
         main {
@@ -42,25 +39,20 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            z-index: 2;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="submit"] {
             width: 300px;
             padding: 10px;
+            font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
         }
 
         input[type="submit"] {
-            padding: 10px 20px;
             background-color: #5cb85c;
             color: white;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
             transition: background-color 0.3s ease;
         }
 
@@ -81,76 +73,28 @@
             border-radius: 5px;
             font-size: 16px;
             font-weight: bold;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
         }
 
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 20px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2), 0 -6px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 2;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
         }
+
         footer a {
-            text-decoration: none;
             color: #5cb85c;
-            font-weight: 600;
-            transition: color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
-        
+
         footer a:hover {
             color: #4cae4c;
-            transform: scale(1.1);
-        }
-
-        /* Emoji animation */
-        .emoji {
-            position: absolute;
-            font-size: 24px;
-            animation: floatUp 5s infinite ease-in-out;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        .emoji:nth-child(1) {
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .emoji:nth-child(2) {
-            left: 40%;
-            animation-delay: 1s;
-        }
-
-        .emoji:nth-child(3) {
-            left: 60%;
-            animation-delay: 2s;
-        }
-
-        .emoji:nth-child(4) {
-            left: 80%;
-            animation-delay: 3s;
-        }
-
-        .emoji:nth-child(5) {
-            left: 100%;
-            animation-delay: 4s;
         }
     </style>
 </head>
@@ -159,14 +103,6 @@
         <h1>Instagram Reel Downloader</h1>
     </header>
     <main>
-        <!-- Floating Emojis -->
-        <div class="emoji">🎉</div>
-        <div class="emoji">✨</div>
-        <div class="emoji">🎈</div>
-        <div class="emoji">🦋</div>
-        <div class="emoji">❤️</div>
-
-        <!-- Form Section -->
         <form id="download-form">
             <input type="text" id="reel-url" placeholder="Enter Instagram Reel URL" required>
             <input type="submit" value="Download">
@@ -174,7 +110,7 @@
         <div id="download-link"></div>
     </main>
     <footer>
-        <p>Developed by 😏 WOODcraft</p>
+        <p>𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐝 𝐁𝐲 ✿ 𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭</p>
         <a href="https://t.me/Opleech_WD" target="_blank">Join Our Channel</a>
     </footer>
     <script>
